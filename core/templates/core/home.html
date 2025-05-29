@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <h1>Welcome to E-Shop</h1>
+  <p>Your one-stop shop for all your needs.</p>
+  <a href="{% url 'products:product_list' %}">Browse Products</a>
+  <a href="{% url 'cart:cart' %}">View Cart</a>
+  <a href="{% url 'orders:order_list' %}">View Orders</a>
+  <a href="{% url 'core:about' %}">About Us</a>
+{% endblock %}

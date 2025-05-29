@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Product
 
-# Register your models here.
+class MemberAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'price', 'image', 'stock')
+    prepopulated_fields = {'slug': ('name',)}
+
+admin.site.register(Product, MemberAdmin)
+    
+    

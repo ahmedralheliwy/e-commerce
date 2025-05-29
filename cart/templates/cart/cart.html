@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Your Cart{% endblock %}
+{% block content %}
+<h2>Your Cart</h2>
+<form method="post" action="{% url 'cart:update_cart' %}">
+    {% csrf_token %}
+    <ul>
+      {% for item in cart_items %}
+        <li>
+          {{ item.product.name }} - ${{ item.product.price }}
+          Quantity: 
+          <input type="hidden" name="item_id" value="{{ item.id }}">
+          <input type="number" name="quantity" value="{{ item.quantity }}">
+        </li>
+      {% endfor %}
+    </ul>
+    <button type="submit">Update Cart</button>
+</form>
+<p>Total: ${{ total_price }}</p>
+<a href="{% url 'orders:checkout' %}">Proceed to Checkout</a>
+<!-- This link directs the user to the checkout page to finalize their order. -->
+
+{% endblock %}

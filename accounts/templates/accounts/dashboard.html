@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ user.username }}!</h2>
+
+<p>Email: {{ user.email }}</p>
+<p>Joined on: {{ user.date_joined|date:"F j, Y" }}</p>
+
+<hr>
+
+<h3>Your Account</h3>
+<ul>
+    <li><a href="{% url 'orders:order_list' %}">My Orders</a></li>
+    <li><a href="{% url 'cart:cart' %}">My Cart</a></li>
+    <li><a href="{% url 'products:product_list' %}">Browse Products</a></li>
+    <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+</ul>
+
+{% if user.is_superuser %}
+    <hr>
+    <h3>Admin Section</h3>
+    <ul>
+        <li><a href="{% url 'admin:index' %}">Go to Admin Panel</a></li>
+    </ul>
+{% endif %}
+
+{% endblock %}
